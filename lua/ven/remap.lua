@@ -1,4 +1,5 @@
 
+
     -- -- MASTER & KEY -- -- 
     -- ------------------ --
 -- Set space as leader key
@@ -108,18 +109,5 @@ vim.keymap.set('n', '<leader>nu', '/\\d\\+<CR>', {})
 
     -- -- PLUGIN REMAPS -- -- 
     -- ------------------- --
--- Telescope Remaps
-vim.keymap.set('n', '<leader>th', ':Telescope help_tags<CR>', { silent = true }) -- "Telescope Help"
-vim.keymap.set('n', '<leader>tr', ':Telescope registers<CR>', { silent = true }) -- "Telescope Registers"
-vim.keymap.set('n', '<leader>pb', ':Telescope buffers<CR>', { silent = true }) -- "Project Buffers"
-vim.keymap.set('n', '<leader>pp', ':Telescope current_buffer_fuzzy_find<CR>', { silent = true }) -- "Project Pages"
-vim.keymap.set('n', '<leader>pg', ':Telescope live_grep<CR>', { silent = true }) -- "Project Grep"
-
--- Copilot Remaps
--- set otpion+k to push to previous suggestion
-vim.keymap.set('i', '˚', '<Plug>(copilot-previous)', {noremap = true, silent = true})
--- set option+l to push to next suggestion
-vim.keymap.set('i', '¬', '<Plug>(copilot-next)', {noremap = true, silent = true})
-
--- Nerdree Remaps
--- vim.remap.set('n', '<leader>n', ':NERDTreeToggle<CR>', { silent = true })
+    -- LOCATED AT:
+    --      nvim/after/plugin/plugin-name
