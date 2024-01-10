@@ -120,6 +120,12 @@ _G.packer_plugins = {
     path = "/Users/ven/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
+  ["emmet-vim"] = {
+    config = { "\27LJ\2\n[\0\0\2\0\6\0\t6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0K\0\1\0\6n\20user_emmet_mode\6,\26user_emmet_leader_key\6g\bvim\0" },
+    loaded = true,
+    path = "/Users/ven/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/ven/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -220,6 +226,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: emmet-vim
+time([[Config for emmet-vim]], true)
+try_loadstring("\27LJ\2\n[\0\0\2\0\6\0\t6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0K\0\1\0\6n\20user_emmet_mode\6,\26user_emmet_leader_key\6g\bvim\0", "config", "emmet-vim")
+time([[Config for emmet-vim]], false)
 -- Config for: oxocarbon
 time([[Config for oxocarbon]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme oxocarbon\bcmd\bvim\0", "config", "oxocarbon")

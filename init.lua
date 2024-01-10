@@ -10,3 +10,4 @@ vim.cmd([[command! -nargs=1 -complete=help Help vertical help <args>]])
   --   command = os.getenv('HOME') .. '/.virtualenvs/tools/bin/python';
   --   args = { '-m', 'debugpy.adapter' };
   -- }
+print("venv: ven loaded")

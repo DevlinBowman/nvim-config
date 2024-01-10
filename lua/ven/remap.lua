@@ -1,5 +1,3 @@
-
-
     -- -- MASTER & KEY -- -- 
     -- ------------------ --
 -- Set space as leader key
@@ -10,12 +8,18 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("i", ";;", "<ESC>")
 -- Unmap Q
 vim.keymap.set("n", "Q", "<nop>")
-
+-- jump between non-indented lines
+vim.keymap.set("n", "<Leader>]", function()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("/^\\S\n", true, false, true), 'n', true)
+end)
+vim.keymap.set("n", "<Leader>[", function()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("?^\\S\n", true, false, true), 'n', true)
+end)
 
     -- -- SHORTCUTS -- -- 
     -- --------------- -- 
 -- Remap <leader><leader> to source current file
-vim.keymap.set("n", "<leader><leader>", function()
+vim.keymap.set("n", "<leader>so", function()
     vim.cmd("so")
 end)
 -- Remap Shift+E to go to end of line
@@ -32,6 +36,8 @@ vim.keymap.set('n', '<leader>dp', ':bnext | bd#<CR>', { silent = true }) --"Dele
 vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]) --"Search + Sub"
 -- Remap <leader>x to make current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- remap <leader> rws to remove all trailing whitespace
+vim.keymap.set("n", "<leader>rws", [[:%s/\s\+$//e<CR>]], { silent = true }) --"Remove Whitespace"
 
 
     -- -- NICHE -- -- 
@@ -57,6 +63,8 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
     -- -- CLIPBOARD & YDP -- -- 
     -- --------------------- -- 
+-- Remap <leader>gp to delete file contents and paste from system CLIPBOARD
+vim.api.nvim_set_keymap('n', '<leader>dp', [[ggdG"*p]], { noremap = true, silent = true })
 -- Remap <leader>y and <leader>Y to copy to system clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])

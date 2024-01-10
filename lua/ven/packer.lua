@@ -56,6 +56,13 @@ return require('packer').startup(function(use)
   use ('thePrimeagen/Harpoon')
 
   use ('mfussenegger/nvim-dap')
+  use {
+       'mattn/emmet-vim',
+       config = function()
+       vim.g.user_emmet_leader_key=','
+       vim.g.user_emmet_mode='n'
+    end
+}
   
 ---------------------------------------------------------
 --LSP--
@@ -82,6 +89,8 @@ return require('packer').startup(function(use)
     {'rafamadriz/friendly-snippets'}, -- Optional
   }
 }
+
+  -- use {'jose-elias-alvar ez/null-ls.nvim', requires = {'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig'}}
 
 ----------------------------------------------------------
   -- use 'preservim/nerdtree'  
