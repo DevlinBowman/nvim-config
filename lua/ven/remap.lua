@@ -109,7 +109,7 @@ vim.keymap.set("n", "<S-left>", "<cmd>bprevious<CR>")
 vim.keymap.set("n", "<S-right>", "<cmd>bnext<CR>")
 --vim.keymap.set("i", "<S-left>", "<cmd>bprevious<CR>")
 --vim.keymap.set("i", "<S-right>", "<cmd>bnext<CR>")
-vim.keymap.set('n', '<S-Up>', ':Telescope buffers<CR>')
+-- vim.keymap.set('n', '<S-Up>', ':Telescope buffers<CR>')
 vim.keymap.set('n', '<S-Down>', ':bdelete<CR>')
 -- Remap <leader>nu to search for numbers
 vim.keymap.set('n', '<leader>nu', '/\\d\\+<CR>', {})

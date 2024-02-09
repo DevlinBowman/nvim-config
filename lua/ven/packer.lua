@@ -11,10 +11,14 @@ return require('packer').startup(function(use)
   -- uses telescope to search for files
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
     -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  -- use {
+  --     'preservim/nerdtree'
+  -- }
 
 
 ----------------------------------------------------------
@@ -30,6 +34,7 @@ return require('packer').startup(function(use)
   'nvim-lualine/lualine.nvim',
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 }
+
 
 ----------------------------------------------------------
 --INPUT UTILITIES--
@@ -53,8 +58,9 @@ return require('packer').startup(function(use)
   use ('nvim-treesitter/playground')
   use ('tpope/vim-fugitive')
   use ('nvim-lua/plenary.nvim')
-  use ('thePrimeagen/Harpoon')
+  -- use ('thePrimeagen/Harpoon')
 
+  -- Learn how to use this
   use ('mfussenegger/nvim-dap')
   use {
        'mattn/emmet-vim',
@@ -63,6 +69,8 @@ return require('packer').startup(function(use)
        vim.g.user_emmet_mode='n'
     end
 }
+
+  use { 'mfussenegger/nvim-lint'}
   
 ---------------------------------------------------------
 --LSP--

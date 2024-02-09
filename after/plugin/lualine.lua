@@ -1,3 +1,20 @@
+local function git_relative_path()
+    local file_path = vim.fn.expand('%:p')
+
+    local handle = io.popen('git rev-parse --show-toplevel 2> /dev/null')
+    local git_root = handle:read('*a'):gsub('\n$', '')
+    handle:close()
+
+    if git_root and #git_root > 0 and file_path:sub(1, #git_root) == git_root then
+        local relative_path = file_path:sub(#git_root + 2)
+        return relative_path
+    else
+        return ''
+    end
+end
+
+
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -20,7 +37,7 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_c = {git_relative_path},
     lualine_x = {'encoding', 'filetype'},
     lualine_y = {'location'},
     lualine_z = {'mode'}
