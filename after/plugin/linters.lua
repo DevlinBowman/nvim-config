@@ -1,40 +1,59 @@
-vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = false,
-})
-
-local lint = require('lint')
-lint.linters.mypy = {
-  cmd = 'mypy',
-  stdin = false,
-  args = {'--show-column-numbers'},
-  stream = 'stdout',
-  ignore_exitcode = true,
-  parser = require('lint.parser').from_pattern(
-    [[:(%d+):(%d+): (%w+): (.+)]], 
-    { 'row', 'col', 'severity', 'message' },
-    {
-      severities = {
-        error = vim.diagnostic.severity.ERROR,
-        warning = vim.diagnostic.severity.WARN,
-      },
-    }
-  ),
-}
-
--- Assuming nvim-lint is already installed via Packer
-require('lint').linters_by_ft = {
-  python = {'mypy'},  -- Use mypy for Python files
-  lua = {'luacheck'},  -- Use luacheck for Lua files
-}
-
-vim.api.nvim_create_autocmd({"BufWritePost", "TextChanged"}, {
-  pattern = {"*.py", "*.lua"},
-  callback = function()
-    require('lint').try_lint()
-  end,
-})
-
+-- local lint = require('lint')
+-- lint.linters.mypy = {
+--   cmd = 'mypy',
+--   stdin = false,
+--   args = {'--show-column-numbers'},
+--   stream = 'stdout',
+--
+--   ignore_exitcode = true,
+--   parser = require('lint.parser').from_pattern(
+--     [[:(%d+):(%d+): (%w+): (.+)]],
+--     { 'row', 'col', 'severity', 'message' },
+--     {
+--       severities = {
+--         error = vim.diagnostic.severity.ERROR,
+--         warning = vim.diagnostic.severity.WARN,
+--         note = vim.diagnostic.severity.INFO,
+--       },
+--     }
+--   ),
+-- }
+--
+-- -- Assuming nvim-lint is already installed via Packer
+-- require('lint').linters_by_ft = {
+--   python = {'mypy'},  -- Use mypy for Python files
+--   lua = {'luacheck'},  -- Use luacheck for Lua files
+-- }
+--
+-- vim.api.nvim_create_autocmd({"BufWritePost", "TextChanged"}, {
+--   pattern = {"*.py", "*.lua"},
+--   callback = function()
+--     require('lint').try_lint()
+--   end,
+-- })
+--
+-- vim.diagnostic.config({
+--   virtual_text = {
+--     prefix = '■',  -- This can be any character you prefer
+--     spacing = 0,
+--   },
+--   signs = true,
+--   underline = true,
+--   update_in_insert = false,  -- Set to true if you want diagnostics while typing
+--   severity_sort = true,
+-- })
+--
+-- -- Create and map a command to toggle diagnostics
+-- vim.api.nvim_create_user_command('ToggleDiagnostics', function()
+--     local current_state = vim.diagnostic.config().virtual_text
+--     vim.diagnostic.config({ virtual_text = not current_state })
+-- end, {})
+--
+-- -- Automatically run the command when Vim starts
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--     pattern = "*",
+--     callback = function()
+--         vim.cmd("ToggleDiagnostics")
+--     end,
+-- })
+--
