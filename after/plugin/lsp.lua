@@ -8,16 +8,6 @@ local lsp = require('lsp-zero').preset({
 
 local lspconfig = require('lspconfig')
 
-lspconfig.pylsp.setup{
-    cmd = {"/usr/local/bin/pylsp", "-vv", "--log-file", "/tmp/pylsp.log"},
-}
-
-
-
-
--- Python LSP with Pyright
--- lspconfig.pyright.setup{}
-
 -- CSS LSP
 lspconfig.cssls.setup{}
 
@@ -31,7 +21,28 @@ require('lspconfig').tsserver.setup{
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "html" }  -- Ensure HTML is included
 }
 
+-- Configure pylsp
+lspconfig.pylsp.setup{
+    -- Specify the command if it's not in the default path
+    -- cmd = {"/path/to/pylsp"},
 
+    -- Configuration settings for pylsp
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = {'E501'},  -- Ignore E501 errors
+                    maxLineLength = 120 -- You can set your preferred max line length (optional)
+                }
+            }
+        }
+    },
+}
+
+
+--
+-- Diagnostic configuration
+--
 
 local lint = require('lint')
 lint.linters.mypy = {
@@ -54,7 +65,6 @@ lint.linters.mypy = {
   ),
 }
 
--- Assuming nvim-lint is already installed via Packer
 require('lint').linters_by_ft = {
   python = {'mypy'},  -- Use mypy for Python files
   lua = {'luacheck'},  -- Use luacheck for Lua files
@@ -74,11 +84,11 @@ vim.diagnostic.config({
   },
   signs = true,
   underline = true,
-  update_in_insert = false,  -- Set to true if you want diagnostics while typing
+  update_in_insert = true,  -- Set to true if you want diagnostics while typing
   severity_sort = true,
 })
 
--- Create and map a command to toggle diagnostics
+-- Command to toggle diagnostics
 vim.api.nvim_create_user_command('ToggleDiagnostics', function()
     local current_state = vim.diagnostic.config().virtual_text
     vim.diagnostic.config({ virtual_text = not current_state })

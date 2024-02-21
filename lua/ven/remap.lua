@@ -1,5 +1,9 @@
     -- -- MASTER & KEY -- -- 
     -- ------------------ --
+-- Unmap weird arrow keys
+vim.api.nvim_set_keymap('n', '<D-Left>', '<Nop>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<D-Right>', '<Nop>', {noremap = true, silent = true})
+
 -- Set space as leader key
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) --"Project View"
